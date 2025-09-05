@@ -151,6 +151,8 @@ class TextSimilarityCalculator:
         # Чтение файлов
         vacancy_text = self.read_file(vacancy_path)
         resume_text = self.read_file(resume_path)
+        k = resume_text.find('Кандидат')
+        resume_text = resume_text[k+8:]
         
         # Нормализация текстов
         normalized_vacancy = self.normalizer.normalize_text(vacancy_text)
@@ -174,6 +176,8 @@ class TextSimilarityCalculator:
         """Детальный анализ с нормализацией"""
         vacancy_text = self.read_file(vacancy_path)
         resume_text = self.read_file(resume_path)
+        k = resume_text.find('Кандидат')
+        resume_text = resume_text[k+8:]
         
         # Нормализация
         norm_vacancy = self.normalizer.normalize_text(vacancy_text)
@@ -200,15 +204,16 @@ class TextSimilarityCalculator:
 # Пример использования
 def main():
     calculator = TextSimilarityCalculator()
+    i=5
     
     try:
         # Базовый расчет схожести
-        similarity = calculator.calculate_similarity("vacancy.txt", "resume.txt")
+        similarity = calculator.calculate_similarity("/Users/aelitta/Documents/salute-speech/AI HR/бизнес-аналитик.txt", f"/Users/aelitta/Documents/salute-speech/biznes-analitik/res{i}.txt")
         print(f"\nМера похожести после нормализации: {similarity:.4f}")
         print(f"Процент совпадения: {similarity * 100:.2f}%")
         
         # Детальный анализ
-        analysis = calculator.get_detailed_analysis("vacancy.txt", "resume.txt")
+        analysis = calculator.get_detailed_analysis("/Users/aelitta/Documents/salute-speech/AI HR/бизнес-аналитик.txt", f"/Users/aelitta/Documents/salute-speech/biznes-analitik/res{i}.txt")
         print(f"\nДетальный анализ:")
         print(f"Общих слов: {analysis['common_words_count']}")
         print(f"Уникальных слов в вакансии: {analysis['vacancy_word_count']}")
