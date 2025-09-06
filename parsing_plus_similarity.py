@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 import os
 import sys
-sys.path.append('/Users/aelitta/Documents/salute-speech') #путь к функциям похожести
 
 from deepseek_python_similarity_metrics import TextNormalizer, TextSimilarityCalculator
 
