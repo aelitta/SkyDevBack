@@ -4,6 +4,12 @@ import certifi
 import os
 import ssl
 from pathlib import Path
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+SS_API_KEY = os.getenv('SS_API_KEY')
 
 custom_cert = '/Users/aelitta/Documents/salute-speech/russiantrustedca.pem' #path to Russian Cert
 
@@ -21,7 +27,7 @@ def get_api_token_ss():
     'Content-Type': 'application/x-www-form-urlencoded',
     'Accept': 'application/json',
     'RqUID': 'e7742261-edd3-4817-933c-c20cd7d515e5',
-    'Authorization': 'Basic ODUxNWY3NjctMGNjYy00MTg0LWE1ZDItOTJiOWZlZjc0YWZiOjQ2NzJkN2Y4LTI3YTEtNGIxZS05M2MyLWNjN2VmY2M4ZTkzZQ=='
+    'Authorization': f'Basic {SS_API_KEY}'
     }
 
     response = requests.request("POST", url, headers=headers, data=payload, verify=custom_cert)
